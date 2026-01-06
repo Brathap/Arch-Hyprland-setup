@@ -1,0 +1,240 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 3,
+
+    // =========================================================================
+    // MODULES LAYOUT
+    // =========================================================================
+    "modules-left": [
+        "group/stars",       // Rocket -> Workspaces (1-6)
+	"custom/appname"
+    ],
+    "modules-center": [
+        "clock"             // Target Clock
+    ],
+    "modules-right": [
+        "group/motherboard", // CPU/RAM/Temp
+        "group/connectivity",// WiFi (Speed) -> Bluetooth
+        "group/hardware",    // Battery -> Vol/Bright
+        "group/power"        // Power -> Lock/Logout
+    ],
+
+    // =========================================================================
+    // LEFT MODULES
+    // =========================================================================
+    
+    // --- GROUP: STARS (Rocket Drawer) ---
+    "group/stars": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/launcher",
+            "hyprland/workspaces"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "child-stars",
+            "transition-left-to-right": true,
+            "click-to-reveal": false
+        }
+    },
+
+    "custom/launcher": {
+	"format": " ",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "●",
+            "default": "•"
+        },
+        "persistent-workspaces": {
+            "*": 6
+        }
+    },
+
+    "custom/appname": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "hyprctl activewindow | grep 'class:' | awk '{print $2}'",
+        "max-length": 50
+    },
+
+    // =========================================================================
+    // CENTER MODULES
+    // =========================================================================
+    
+    "clock": {
+        "interval": 1,
+        // Target Icon + Time + Moon Icon + Short Date
+        "format": "🌗 {:%H:%M:%S  🔭 %d/%m/%y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    // =========================================================================
+    // RIGHT MODULES
+    // =========================================================================
+
+
+    // --- GROUP: MOTHERBOARD ---
+    "group/motherboard": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "temperature"
+        ]
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "on-click": "kitty -e btop"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "tooltip": true,
+        "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB"
+    },
+
+    "temperature": {
+        // Your specific AMD sensor path
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        "format": " {temperatureC}°",
+        "format-critical": " {temperatureC}°",
+        "interval": 20
+    },
+
+    // --- GROUP: CONNECTIVITY (Warp Stream + BT) ---
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",      // Visible Anchor (Speed)
+            "bluetooth"     // Hidden Drawer Item
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "child-connectivity",
+            "transition-left-to-right": false,
+            "click-to-reveal": false
+        }
+    },
+
+    "network": {
+        "interval": 1,
+        // CHANGED: Added '' icon and tweaked sizes
+        "format-wifi": "<span size='10pt'>  {essid}</span>\n<span size='9pt'> {bandwidthDownBytes}</span>",
+        "format-ethernet": "<span size='10pt'>  Ethernet</span>\n<span size='9pt'> {bandwidthDownBytes}</span>",
+        "format-disconnected": "⚠ Offline",
+        "format-disabled": "✈ Off",
+        "tooltip-format": "{ipaddr}",
+	"on-click": "rfkill toggle wlan",
+	"on-double-click": "kitty -e nmtui",
+	"on-right-click": "kitty -e nmtui",
+        "min-height": 20
+    },
+
+"bluetooth": {
+        // IDLE = 󰂯 (B-rune) | DISABLED = 󰂲 (Slash) | CONNECTED = 󰂰 (Filled)
+        "format": "󰂯 {status}",
+        "format-disabled": "󰂲 Off",
+        "format-connected": "󰂰 {device_alias}",
+        "format-connected-battery": "󰂰 {device_alias} 󰥉 {device_battery_percentage}%",
+        // Tooltip (Hover info)
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        // 1 Click: Toggle Power
+        "on-click": "rfkill toggle bluetooth",
+        // 2 Clicks: Open Terminal Interface
+	"on-double-click": "kitty --class bt_menu -e /home/Brathap/bt-connect.sh"
+    },
+
+// --- GROUP: HARDWARE (Battery, Audio, Brightness) ---
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "battery",      // Visible Anchor
+            "pulseaudio",   // Hidden
+            "backlight"     // Hidden
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "child-hardware",
+            "transition-left-to-right": false,
+            "click-to-reveal": false
+        }
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+"pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "🔇",
+        "format-icons": {
+            "default": ["🔈", "🔉", "🔊", "💥"]
+        },
+        "on-click": "pavucontrol",
+
+        // SMOOTH INFINITY CONFIG
+        // We use 10% steps. Fewer commands = Zero Lag.
+        "scroll-step": 10, 
+        "on-scroll-up": "wpctl set-volume -l 999.0 @DEFAULT_AUDIO_SINK@ 10%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "scroll-step": 2
+    },
+
+    // --- GROUP: POWER ---
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/power",
+            "custom/lock",
+            "custom/logout"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "child-power",
+            "transition-left-to-right": false,
+            "click-to-reveal": false
+        }
+    },
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    "custom/lock": {
+        "format": "",
+        "tooltip": "Lock Screen",
+        "on-click": "hyprlock"
+    },
+
+    "custom/logout": {
+        "format": "",
+        "tooltip": "Logout",
+        "on-click": "hyprctl dispatch exit"
+    },
+
+}

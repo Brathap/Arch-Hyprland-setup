@@ -1,0 +1,245 @@
+/* --- RESET & FONTS --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- THE VOID (Transparent Bar) --- */
+window#waybar {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* =========================================================================
+   1. LEFT GROUP: STARS DRAWER (Rocket)
+   ========================================================================= */
+#group-stars {
+    background: rgba(17, 17, 27, 0.9); /* Deep Space Black */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 2px 8px;
+    margin: 5px 5px 5px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#custom-launcher {
+    color: #f38ba8; /* Red/Pink */
+    font-size: 22px;
+    margin-right: 5px;
+    padding: 0 5px;
+    background: transparent;
+}
+
+.child-stars { background: transparent; }
+.child-stars #workspaces { background: transparent; margin: 0; padding: 0; }
+
+.child-stars #workspaces button {
+    min-width: 15px; 
+    padding: 0 5px;
+    color: #ffffff;
+    font-size: 16px;
+    background: transparent;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.child-stars #workspaces button.active {
+    color: #89b4fa; /* Blue Planet */
+    text-shadow: 0 0 10px #89b4fa;
+}
+
+#group-stars:hover {
+    background: linear-gradient(135deg, #1e1e2e 0%, #313244 100%);
+    box-shadow: 0 0 15px rgba(180, 190, 254, 0.4);
+    border-color: rgba(180, 190, 254, 0.5);
+}
+
+/* =========================================================================
+   2. CENTER MODULES (Window, Clock, Weather)
+   ========================================================================= */
+#hyprland-window, #clock, #custom-weather {
+    background: rgba(17, 17, 27, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin: 5px 5px;
+    color: #cdd6f4;
+    font-weight: bold;
+}
+
+#custom-weather {
+    color: #f9e2af; /* Yellow/Sun color */
+}
+
+/* =========================================================================
+   3. RIGHT GROUPS (Motherboard, Network, Hardware, Power)
+   ========================================================================= */
+#group-motherboard, #network, #group-hardware, #group-power {
+    background: linear-gradient(135deg, #11111b 0%, #1e1e2e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 2px 5px;
+    margin: 5px 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* --- WARP STREAM STYLE --- */
+#network {
+    background: rgba(17, 17, 27, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px; /* Slightly squarer to fit text */
+    padding: 2px 10px;    
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-weight: bold;
+    color: #89b4fa;
+    /* Allow it to grow slightly to fit the name, but max-length in config stops it */
+    min-width: 100px; 
+    font-weight: bold;
+    animation: breathe 4s infinite ease-in-out;
+}
+
+/* Hover Effect */
+#network:hover {
+    box-shadow: 0 0 15px rgba(137, 180, 250, 0.4);
+    background: rgba(30, 30, 46, 0.9);
+    color: #ffffff;
+}
+
+/* MOTHERBOARD STATS */
+#cpu, #memory, #temperature {
+    color: #a6e3a1; /* Green for stats */
+    padding: 0 8px;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent;
+}
+#temperature.critical {
+    color: #f38ba8; /* Red when hot */
+    animation: blink 1s infinite;
+}
+/* --- DATA CORE (Was Reactor Core) --- */
+#disk {
+    background: rgba(17, 17, 27, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin: 5px 5px;
+    color: #fab387; /* Orange */
+    font-weight: bold;
+}
+#group-power { margin-right: 10px; }
+
+/* The Anchors (Always Visible) */
+#battery, #custom-power {
+    color: #cdd6f4;
+    font-size: 15px;
+    padding: 0 10px;
+    background: transparent;
+}
+
+/* The Hidden Items */
+.child-power #custom-lock, 
+.child-power #custom-logout,
+.child-hardware #pulseaudio, 
+.child-hardware #backlight {
+    color: #ffffff;
+    background: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Hover Effects */
+#group-hardware:hover {
+    box-shadow: 0 0 15px rgba(137, 180, 250, 0.4); 
+    border-color: rgba(137, 180, 250, 0.5);
+}
+
+#group-power:hover {
+    box-shadow: 0 0 15px rgba(243, 139, 168, 0.4); 
+    border-color: rgba(243, 139, 168, 0.5);
+}
+
+#custom-lock:hover, #custom-logout:hover, 
+#pulseaudio:hover, #backlight:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+#custom-power:hover { color: #f38ba8; }
+
+
+/* --- CONNECTIVITY GROUP (WiFi + BT) --- */
+#group-connectivity {
+    background: linear-gradient(135deg, #11111b 0%, #1e1e2e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 2px 5px;
+    margin: 5px 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    animation: breathe 4s infinite ease-in-out;
+}
+
+/* The Anchor (WiFi) */
+#network {
+    color: #f5c2e7; /* Pinkish */
+    background: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* The Drawer Item (Bluetooth) */
+.child-connectivity #bluetooth {
+    color: #ffffff;      /* Force White */
+    background: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 20px;     /* Ensure it has width */
+}
+
+/* Hover Effects */
+#group-connectivity:hover {
+    box-shadow: 0 0 15px rgba(245, 194, 231, 0.4); 
+    border-color: rgba(245, 194, 231, 0.5);
+}
+
+#bluetooth:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: #ffffff;
+}
+
+/* --- COMMAND HUB (The Master Drawer) --- */
+#group-hub {
+    background: linear-gradient(135deg, #11111b 0%, #1e1e2e 100%);
+    border: 2px solid #89b4fa; /* Neon Blue Border */
+    border-radius: 50px;
+    padding: 2px 10px;
+    margin: 5px 5px;
+    box-shadow: 0 0 10px rgba(137, 180, 250, 0.3);
+    animation: breathe 4s infinite ease-in-out;
+}
+
+/* The Anchor Icon (Menu) */
+#custom-menu {
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0 10px;
+    margin-right: 5px;
+    text-shadow: 0 0 5px white;
+}
+
+/* FORCE WINDOW TITLE VISIBILITY */
+#window {
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 0 10px;
+}

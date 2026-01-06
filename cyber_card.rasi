@@ -1,0 +1,106 @@
+/* THEME: CYBER-SHARDS (Floating & Aggressive) */
+configuration {
+    show-icons: true;
+    font: "JetBrains Mono Nerd Font ExtraBold 12";
+}
+
+window {
+    width: 900px;
+    height: 600px;
+    
+    /* THE TRICK: The window itself is INVISIBLE */
+    background-color: transparent;
+    border: 0px;
+    
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    background-color: transparent;
+    spacing: 20px;
+    padding: 20px;
+}
+
+inputbar {
+    /* FLOATING CAPSULE HEADER */
+    children: [ prompt, entry ];
+    
+    /* Gradient Background */
+    background-image: linear-gradient(45deg, #bd00ff, #00f2ff);
+    
+    padding: 15px 25px;
+    border-radius: 50px; /* Fully Rounded Pill */
+    
+    /* GLOW EFFECT */
+    border: 2px;
+    border-color: #ffffff;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: #000000; /* Black text on bright gradient */
+    font: "JetBrains Mono Nerd Font Black 14";
+    padding: 0 10px 0 0;
+}
+
+entry {
+    background-color: transparent;
+    text-color: #000000;
+    placeholder: "SYSTEM // OVERRIDE";
+    placeholder-color: rgba(0,0,0,0.5);
+}
+
+listview {
+    /* THE SHARD GRID */
+    columns: 4;
+    lines: 2;
+    spacing: 25px; /* Big gaps between floating islands */
+    background-color: transparent;
+    margin: 20px 0 0 0;
+}
+
+element {
+    /* THE CRAZY SHAPE: "Tech-Cut" Corners */
+    orientation: vertical;
+    padding: 30px 10px;
+    
+    /* Dark Glass */
+    background-color: rgba(10, 10, 15, 0.9);
+    
+    /* Top-Left and Bottom-Right are cut, others are sharp */
+    border-radius: 20px 0px 20px 0px;
+    
+    /* Border acts as a frame */
+    border: 2px;
+    border-color: #333333;
+}
+
+element selected {
+    /* ACTIVE SHARD */
+    background-color: rgba(0, 0, 0, 0.95);
+    
+    /* NEON DASHED BORDER */
+    border: 2px dash;
+    border-color: #00f2ff; /* Cyan Dash */
+    
+    /* Invert Corners for effect */
+    border-radius: 0px 20px 0px 20px;
+}
+
+element-text {
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    background-color: transparent;
+    text-color: #ffffff;
+    margin: 15px 0 0 0;
+    font: "JetBrains Mono Nerd Font Bold 12";
+}
+
+/* MAKE ICONS HUGE */
+element-icon {
+    size: 55px;
+    horizontal-align: 0.5;
+    background-color: transparent;
+}
