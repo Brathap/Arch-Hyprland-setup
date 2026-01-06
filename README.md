@@ -1,9 +1,7 @@
-# 🌌 Arch-Hyprland Cyber-Setup & J.A.R.V.I.S.
+# 🌌 Arch-Hyprland Cyber-Setup 
 
-Welcome to my personal **Arch Linux** configuration. This repository contains my dotfiles for **Hyprland** and the source code for **J.A.R.V.I.S. Rectified**, a custom AI desktop assistant.
+Welcome to my personal **Arch Linux** configuration. This repository contains my dotfiles for **Hyprland** 
 
-![Desktop Screenshot](screenshot.png)
-*(Replace this with your actual desktop screenshot)*
 
 ## 🛠️ The Tech Stack
 * **OS:** Arch Linux
@@ -11,27 +9,6 @@ Welcome to my personal **Arch Linux** configuration. This repository contains my
 * **Terminal:** Kitty (Catppuccin/Neon Themes)
 * **Bar:** Waybar (Tokyo Night / Custom CSS)
 * **Launcher:** Rofi (Custom "Cyber-Shards" & "Holo-Deck" themes)
-* **AI:** J.A.R.V.I.S. (Python + Tkinter)
-
----
-
-## 🤖 Feature: J.A.R.V.I.S. Rectified
-Located in `hypr/jarvis.py`, this is a voice-controlled AI integrated into the desktop.
-
-* **Reactive HUD:** Sci-fi visual interface that pulses with voice input.
-* **Automation:**
-    * **WhatsApp:** Auto-send messages via web automation.
-    * **Web:** Voice search for Google, YouTube, and GitHub.
-    * **Typing:** Dictate text to be typed into any window.
-* **Brain:** Powered by Pollinations.ai for multi-model LLM responses.
-
-### 🎤 Jarvis Commands
-| Voice Command | Action |
-| :--- | :--- |
-| *"Open Google [query]"* | Searches Google |
-| *"Send message to [name]"* | Automates WhatsApp Web |
-| *"Type [text]"* | Types text after 4s delay |
-| *"Wipe memory"* | Clears conversation history |
 
 ---
 
