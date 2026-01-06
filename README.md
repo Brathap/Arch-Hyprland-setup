@@ -2,6 +2,8 @@
 
 Welcome to my personal **Arch Linux** configuration. This repository contains my dotfiles for **Hyprland** 
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/916ea3db-4f0d-4c35-8866-7d67518eb293" />
+
 
 ## 🛠️ The Tech Stack
 * **OS:** Arch Linux
@@ -19,6 +21,15 @@ This setup includes several custom Rofi scripts found in the `rofi/` folder:
 * **Phone Portal:** A Python script (`phone_portal.py`) to share clipboard text between phone and PC via local HTTP.
 * **Eco Mode:** One-click script (`eco_mode.sh`) to disable animations and dim the screen to save battery.
 * **Wallpaper Engine:** Custom Rofi menu to switch wallpapers and effects.
+
+---
+
+## 🖐️ Touchpad Gestures
+I use `libinput-gestures` for 3-finger swipes:
+* **Swipe Up:** Open App Launcher
+* **Swipe Down:** Close Window
+* **Swipe Left:** Open Terminal
+* **Swipe Right:** Open Dashboard
 
 ---
 
